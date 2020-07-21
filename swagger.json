@@ -1,0 +1,483 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "vechain",
+    "version": "1.0"
+  },
+  "tags": [
+    {
+      "name": "blockchain",
+      "description": "Blockchain api"
+    }
+  ],
+  "host": "veriarti.io:3000",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "paths": {
+    "/getArtByID/{token_id}": {
+      "get": {
+        "tags": [
+          "blockchain"
+        ],
+        "summary": "token id",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "token_id",
+            "in": "path",
+            "description": "token id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfull",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "string",
+                  "example": "true"
+                },
+                "msg": {
+                  "type": "string",
+                  "example": "Vechain API..."
+                },
+                "data": {
+                  "type": "object",
+                  "example": {
+                    "title": "testing",
+                    "description": "testing mint with ipfs",
+                    "dappid": "1",
+                    "image": "QmfVD6JQdZcrzft7UQdQ6cAWfNKAc1NUAPwi8yPQovhnX3"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid"
+          },
+          "404": {
+            "description": "Data invalid"
+          }
+        }
+      }
+    },
+    "/tokensOfOwner/{address}": {
+      "get": {
+        "tags": [
+          "blockchain"
+        ],
+        "summary": "tokens of owner",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "address",
+            "in": "path",
+            "description": "Address of owner",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfull",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "string",
+                  "example": "true"
+                },
+                "msg": {
+                  "type": "string",
+                  "example": "Vechain API.."
+                },
+                "data": {
+                  "type": "string",
+                  "example": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "8"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid"
+          },
+          "404": {
+            "description": "Data invalid"
+          }
+        }
+      }
+    },
+    "/mint": {
+      "post": {
+        "tags": [
+          "blockchain"
+        ],
+        "summary": "create NFT token with image and metadata",
+        "description": "blockchain transaction",
+        "consumes": [
+          "application/json",
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "address",
+            "in": "formData",
+            "description": "Address",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "image file",
+            "description": "image of token",
+            "required": true,
+            "type": "file"
+          },
+          {
+            "in": "formData",
+            "name": "title",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "description",
+            "description": "",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "dappid",
+            "description": "filter token from transaction",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfull",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "string",
+                  "example": "true"
+                },
+                "msg": {
+                  "type": "string",
+                  "example": "Vechain API.."
+                },
+                "data": {
+                  "type": "object",
+                  "example": {
+                    "gasUsed": 86130,
+                    "gasPayer": "0xb9943911015e36ba9808790f5713c17c74d7a8bf",
+                    "paid": "0x70348d599cc7af1aa",
+                    "reward": "0x21a95d9ae23be7bb3",
+                    "reverted": false,
+                    "meta": {
+                      "blockID": "0x00633aade62b2a3c12ae4ef14a40904515adaaf628f4df0eef825b0a4052f178",
+                      "blockNumber": 6503085,
+                      "blockTimestamp": 1595061930,
+                      "txID": "0x8a01a654e4a0e1c07cbdbf960da3f308283acd29db30ecf53118044f69941cda",
+                      "txOrigin": "0xb9943911015e36ba9808790f5713c17c74d7a8bf"
+                    },
+                    "outputs": [
+                      {
+                        "contractAddress": null,
+                        "events": [
+                          {
+                            "address": "0xb59bbc40a2506d83b7e236f59199c11e8b4c474a",
+                            "topics": [
+                              "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+                              "0x0000000000000000000000000000000000000000000000000000000000000000",
+                              "0x000000000000000000000000b9943911015e36ba9808790f5713c17c74d7a8bf",
+                              "0x0000000000000000000000000000000000000000000000000000000000000009"
+                            ],
+                            "data": "0x"
+                          }
+                        ],
+                        "transfers": []
+                      }
+                    ],
+                    "blockNumber": 6503085,
+                    "blockHash": "0x00633aade62b2a3c12ae4ef14a40904515adaaf628f4df0eef825b0a4052f178",
+                    "transactionHash": "0x8a01a654e4a0e1c07cbdbf960da3f308283acd29db30ecf53118044f69941cda",
+                    "status": "0x1",
+                    "contractAddress": null
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid"
+          },
+          "404": {
+            "description": "Data invalid"
+          }
+        }
+      }
+    },
+    "/safetransferfrom/{from}/{to}/{tokenid}": {
+      "post": {
+        "tags": [
+          "blockchain"
+        ],
+        "summary": "transfer NFT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "from",
+            "description": "Sender's address",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "to",
+            "description": "Recipient's address",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "tokenid",
+            "description": "transfer NFT",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfull",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "string",
+                  "example": "false"
+                },
+                "msg": {
+                  "type": "string",
+                  "example": "Error.."
+                },
+                "data": {
+                  "type": "string",
+                  "example": " "
+                },
+                "error": {
+                  "type": "string",
+                  "example": "{}"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/ownerof/{token_id}": {
+      "get": {
+        "tags": [
+          "blockchain"
+        ],
+        "summary": "owner of token",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "token_id",
+            "description": "token id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfull",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "string",
+                  "example": "true"
+                },
+                "msg": {
+                  "type": "string",
+                  "example": "Vechain API.."
+                },
+                "data": {
+                  "type": "string",
+                  "example": "0xb9943911015E36BA9808790f5713C17C74d7a8BF"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/balanceof/{address}": {
+      "get": {
+        "tags": [
+          "blockchain"
+        ],
+        "summary": "balance of owner",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "address",
+            "description": "address",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfull",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "string",
+                  "example": "true"
+                },
+                "msg": {
+                  "type": "string",
+                  "example": "Vechain API.."
+                },
+                "data": {
+                  "type": "string",
+                  "example": "12"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    },
+    "/name": {
+      "get": {
+        "tags": [
+          "blockchain"
+        ],
+        "summary": "name of owner",
+        "consumes": [
+          "application/json",
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "address",
+            "description": "address",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfull",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "string",
+                  "example": "true"
+                },
+                "msg": {
+                  "type": "string",
+                  "example": "Vechain API.."
+                },
+                "data": {
+                  "type": "string",
+                  "example": "abcd"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    }
+  }
+}
